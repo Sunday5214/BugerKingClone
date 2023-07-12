@@ -2,40 +2,81 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MugerKing.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="bottomNavLabelStyle">
+            <Setter Property="FontSize" Value="Caption" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="Label" x:Key="bottomNavImageStyle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HeightRequest" Value="24"/>
+            <Setter Property="WidthRequest" Value="24"/>
+        </Style>
+    </ContentPage.Resources>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            
+        </ScrollView>
+        <!--하단 네비게이션 바-->
+        <Border BackgroundColor="#F5EBDC"
+                StrokeThickness="0"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                HeightRequest="60"
+                Grid.Row="1">
+            <Grid HorizontalOptions="Fill"
+                  VerticalOptions="Center"
+                  RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,*,*,*,*"
+                  RowSpacing="2">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+                <Image Style="{StaticResource bottomNavImageStyle}"
+                       Source="cat.svg"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Label Text="홈"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Style="{StaticResource bottomNavLabelStyle}"/>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                <Image Style="{StaticResource bottomNavImageStyle}"
+                       Source="cat.svg"
+                       Grid.Row="0"
+                       Grid.Column="1" />
+                <Label Text="쿠폰"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Style="{StaticResource bottomNavLabelStyle}"/>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                <Image Style="{StaticResource bottomNavImageStyle}"
+                       Source="cat.svg"
+                       Grid.Row="0"
+                       Grid.Column="2" />
+                <Label Text="주문"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       Style="{StaticResource bottomNavLabelStyle}"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                <Image Style="{StaticResource bottomNavImageStyle}"
+                       Source="cat.svg"
+                       Grid.Row="0"
+                       Grid.Column="3"/>
+                <Label Text="MY킹"
+                       Grid.Row="1"
+                       Grid.Column="3"
+                       Style="{StaticResource bottomNavLabelStyle}"/>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                <Image Style="{StaticResource bottomNavImageStyle}"
+                       Source="cat.svg"
+                       Grid.Row="0"
+                       Grid.Column="4"/>
+                <Label Text="더보기"
+                       Grid.Row="1"
+                       Grid.Column="4"
+                       Style="{StaticResource bottomNavLabelStyle}"/>
+            </Grid>
 
-        </VerticalStackLayout>
-    </ScrollView>
-
+        </Border>
+    </Grid>
 </ContentPage>
