@@ -7,5 +7,19 @@
             Text="Coupon"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Grid BackgroundColor="White" RowDefinitions="*, *, *" ColumnDefinitions="auto, *, auto" HeightRequest="100" Margin="20">
+            <VerticalStackLayout Grid.RowSpan="3" VerticalOptions="Center" Margin="20,0,0,0">
+                <HorizontalStackLayout>
+                    <Label TextColor="#512314" FontAttributes="Bold" FontSize="17">멤버십 쿠폰</Label>
+                    <Label TextColor="#512314" VerticalOptions="End">입니다.</Label>
+                </HorizontalStackLayout>
+                <Label TextColor="#512314">로그인후 사용하세요.</Label>
+            </VerticalStackLayout>
+
+            <Image Source="/bugerking_img_in_coupon.webp" WidthRequest="70" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="End" Margin="0,0,20,0"></Image>
+
+        </Grid>
+
     </VerticalStackLayout>
 </ContentView>

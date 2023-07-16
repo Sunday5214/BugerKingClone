@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\cat.svg" />
+	  <None Remove="Resources\Images\bugerking_img_in_coupon.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
