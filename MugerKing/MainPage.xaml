@@ -1,82 +1,199 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:MugerKing.Converters"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:enums="clr-namespace:MugerKing.Enums"
+             xmlns:viewModel="clr-namespace:MugerKing.ViewModels"
              x:Class="MugerKing.MainPage">
+    <ContentPage.BindingContext>
+        <viewModel:MainViewModel x:Name="ViewModel"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{StaticResource PageBackgroundColor}" StatusBarStyle="DarkContent"/>
+    </ContentPage.Behaviors>
     <ContentPage.Resources>
+        <converter:TabTypesToViewConverter x:Key="TabTypesToViewConverter"/>
+        <converter:TabTypesToColorConverter x:Key="TabTypesToColorConverter"/>
         <Style TargetType="Label" x:Key="bottomNavLabelStyle">
             <Setter Property="FontSize" Value="Caption" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="End"/>
+            <Setter Property="Grid.Row" Value="1"/>
         </Style>
-        <Style TargetType="Label" x:Key="bottomNavImageStyle">
+        <Style TargetType="Image" x:Key="bottomNavImageStyle">
             <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="HeightRequest" Value="24"/>
-            <Setter Property="WidthRequest" Value="24"/>
+            <Setter Property="HeightRequest" Value="20"/>
+            <Setter Property="WidthRequest" Value="20"/>
+            <Setter Property="VerticalOptions" Value="End"/>
+            <Setter Property="Grid.Row" Value="0"/>
+        </Style>
+        <Style TargetType="Grid" x:Key="bottomNavGridStyle">
+            <Setter Property="RowDefinitions" Value="Auto, Auto"/>
+            <Setter Property="Grid.RowSpan" Value="1"/>
+            <Setter Property="VerticalOptions" Value="End"/>
+            <Setter Property="RowSpacing" Value="1"/>
+            <Setter Property="Margin" Value="0, 0, 0, 5"/>
         </Style>
     </ContentPage.Resources>
-    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+          RowSpacing="0">
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            
+            <ContentView Content="{Binding CurrentTab, Converter={StaticResource TabTypesToViewConverter}}"/>
         </ScrollView>
         <!--하단 네비게이션 바-->
-        <Border BackgroundColor="#F5EBDC"
-                StrokeThickness="0"
-                HorizontalOptions="Fill"
-                VerticalOptions="End"
-                HeightRequest="60"
-                Grid.Row="1">
-            <Grid HorizontalOptions="Fill"
-                  VerticalOptions="Center"
-                  RowDefinitions="Auto,Auto"
-                  ColumnDefinitions="*,*,*,*,*"
-                  RowSpacing="2">
+        <Grid RowDefinitions="auto, auto"
+              ColumnDefinitions="0.2*,0.2*,0.2*,0.2*,0.2*"
+              HorizontalOptions="Fill"
+              VerticalOptions="End" RowSpacing="0"
+              Margin="0">
+            <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+                    StrokeThickness="0"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Margin="-2"
+                    VerticalOptions="End"
+                    HeightRequest="50">
+                <Grid HorizontalOptions="Fill"
+                      VerticalOptions="EndAndExpand"
+                      ColumnDefinitions="0.2*,0.2*,0.2*,0.2*,0.2*"
+                      RowSpacing="0"
+                      ColumnSpacing="0">
+                    <Grid Grid.Column="0" Style="{StaticResource bottomNavGridStyle}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                                  CommandParameter="{x:Static enums:TabTypes.Home}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Style="{StaticResource bottomNavImageStyle}"
+                           Source="cat.svg">
+                            <!--https://github.com/CommunityToolkit/Maui/issues/965
+                    Behavior의 BindingContext가 지정되지 않는 이슈가 있는듯-->
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior 
+                                BindingContext="{x:Reference ViewModel}"
+                                TintColor="{Binding CurrentTab, Converter={StaticResource TabTypesToColorConverter},
+                                ConverterParameter={x:Static enums:TabTypes.Home}}"/>
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="홈"
+                           Style="{StaticResource bottomNavLabelStyle}"
+                           TextColor="{Binding CurrentTab, Converter={StaticResource TabTypesToColorConverter},
+                           ConverterParameter={x:Static enums:TabTypes.Home}}">
+                        </Label>
+                    </Grid>
 
-                <Image Style="{StaticResource bottomNavImageStyle}"
-                       Source="cat.svg"
-                       Grid.Row="0"
-                       Grid.Column="0"/>
-                <Label Text="홈"
-                       Grid.Row="1"
-                       Grid.Column="0"
-                       Style="{StaticResource bottomNavLabelStyle}"/>
+                    <Grid Grid.Column="1" Style="{StaticResource bottomNavGridStyle}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                                  CommandParameter="{x:Static enums:TabTypes.Coupon}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Style="{StaticResource bottomNavImageStyle}"
+                           Source="cat.svg">
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior 
+                                BindingContext="{x:Reference ViewModel}"
+                                TintColor=
+                                "{Binding CurrentTab,
+                                Converter={StaticResource TabTypesToColorConverter},
+                                ConverterParameter={x:Static enums:TabTypes.Coupon}}"/>
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="쿠폰"
+                           Style="{StaticResource bottomNavLabelStyle}"                      
+                           TextColor="{Binding CurrentTab, Converter={StaticResource TabTypesToColorConverter},
+                           ConverterParameter={x:Static enums:TabTypes.Coupon}}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                                  CommandParameter="{x:Static enums:TabTypes.Coupon}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
 
-                <Image Style="{StaticResource bottomNavImageStyle}"
-                       Source="cat.svg"
-                       Grid.Row="0"
-                       Grid.Column="1" />
-                <Label Text="쿠폰"
-                       Grid.Row="1"
-                       Grid.Column="1"
-                       Style="{StaticResource bottomNavLabelStyle}"/>
+                    <Grid Grid.Column="3" Style="{StaticResource bottomNavGridStyle}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                              CommandParameter="{x:Static enums:TabTypes.My}"/>
+                        </Grid.GestureRecognizers>
+                        <Image Style="{StaticResource bottomNavImageStyle}"
+                           Source="cat.svg">
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior 
+                            BindingContext="{x:Reference ViewModel}"
+                            TintColor=
+                            "{Binding CurrentTab,
+                            Converter={StaticResource TabTypesToColorConverter},
+                            ConverterParameter={x:Static enums:TabTypes.My}}"/>
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="MY킹"
+                           Style="{StaticResource bottomNavLabelStyle}"                      
+                           TextColor="{Binding CurrentTab, Converter={StaticResource TabTypesToColorConverter},
+                           ConverterParameter={x:Static enums:TabTypes.My}}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                                  CommandParameter="{x:Static enums:TabTypes.My}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
 
-                <Image Style="{StaticResource bottomNavImageStyle}"
-                       Source="cat.svg"
-                       Grid.Row="0"
-                       Grid.Column="2" />
-                <Label Text="주문"
-                       Grid.Row="1"
-                       Grid.Column="2"
-                       Style="{StaticResource bottomNavLabelStyle}"/>
+                    <Grid Grid.Column="4" Style="{StaticResource bottomNavGridStyle}">
+                        <Image Style="{StaticResource bottomNavImageStyle}"
+                           Source="cat.svg">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                              CommandParameter="{x:Static enums:TabTypes.More}"/>
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior 
+                            BindingContext="{x:Reference ViewModel}"
+                            TintColor=
+                            "{Binding CurrentTab,
+                            Converter={StaticResource TabTypesToColorConverter},
+                            ConverterParameter={x:Static enums:TabTypes.More}}"/>
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="더보기"
+                           Style="{StaticResource bottomNavLabelStyle}"                      
+                           TextColor="{Binding CurrentTab, Converter={StaticResource TabTypesToColorConverter},
+                           ConverterParameter={x:Static enums:TabTypes.More}}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                              CommandParameter="{x:Static enums:TabTypes.More}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
 
-                <Image Style="{StaticResource bottomNavImageStyle}"
-                       Source="cat.svg"
-                       Grid.Row="0"
-                       Grid.Column="3"/>
-                <Label Text="MY킹"
-                       Grid.Row="1"
-                       Grid.Column="3"
-                       Style="{StaticResource bottomNavLabelStyle}"/>
-
-                <Image Style="{StaticResource bottomNavImageStyle}"
-                       Source="cat.svg"
-                       Grid.Row="0"
-                       Grid.Column="4"/>
-                <Label Text="더보기"
-                       Grid.Row="1"
-                       Grid.Column="4"
-                       Style="{StaticResource bottomNavLabelStyle}"/>
-            </Grid>
-
-        </Border>
+                </Grid>
+            </Border>
+            <Border BackgroundColor="{StaticResource Secondary}" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                    StrokeThickness="0" Margin="7.5, 0, 7.5, -2" HeightRequest="57">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="90, 90, 0, 0"/>
+                </Border.StrokeShape>
+                <Grid Style="{StaticResource bottomNavGridStyle}" Grid.Column="2">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                              CommandParameter="{x:Static enums:TabTypes.Order}"/>
+                    </Grid.GestureRecognizers>
+                    <Image Style="{StaticResource bottomNavImageStyle}"
+                               Source="cat.svg">
+                        <Image.Behaviors>
+                            <mct:IconTintColorBehavior TintColor="{StaticResource White}"/>
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Text="주문"
+                           TextColor="{StaticResource White}"
+                           Style="{StaticResource bottomNavLabelStyle}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" 
+                                              CommandParameter="{x:Static enums:TabTypes.Order}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Border>
+        </Grid>
+      
     </Grid>
 </ContentPage>

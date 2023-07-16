@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
-    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -355,8 +354,5 @@
         <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
         <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Behaviors">
-            <mct:StatusBarBehavior StatusBarColor="{StaticResource PageBackgroundColor}"/>
-        </Setter>
     </Style>
 </ResourceDictionary>
