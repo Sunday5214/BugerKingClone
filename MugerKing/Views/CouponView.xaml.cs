@@ -13,8 +13,4 @@ public partial class CouponView : ContentView
 		InitializeComponent();
 	}
 
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-		dynamicView.Content = new ContentView1();
-    }
 }
