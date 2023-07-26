@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MugerKing.Views.Coupon.ContentView2">
+             x:Class="MugerKing.Views.Coupon.DeliveryView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to ContentView2 .NET MAUI!"
+            Text="Delivery"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

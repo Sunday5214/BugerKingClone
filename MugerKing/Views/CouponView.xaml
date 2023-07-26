@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:couponView="clr-namespace:MugerKing.Views.Coupon"
+             xmlns:viewModel="clr-namespace:MugerKing.ViewModels"
+             xmlns:enums="clr-namespace:MugerKing.Enums"
+             xmlns:converter="clr-namespace:MugerKing.Converters"
              x:Class="MugerKing.Views.CouponView">
 
+    <ContentView.BindingContext>
+        <viewModel:CouponViewModel x:Name="ViewModel"></viewModel:CouponViewModel>
+    </ContentView.BindingContext>
+    
     <ContentView.Resources>
+
+        <converter:CouponTabTypesToViewConverter x:Key="CouponTabTypesToViewConverter"></converter:CouponTabTypesToViewConverter>
+        
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="TabLabel">
                 <Setter Property="HorizontalOptions" Value="Center"></Setter>
@@ -35,15 +45,34 @@
 
         <Grid RowDefinitions="*, 1" ColumnDefinitions="*, *, *">
 
-            <Label Style="{StaticResource TabLabel}" Text="매장용"></Label>
-            <Label Style="{StaticResource TabLabel}" Text="킹오더용" Grid.Column="1"></Label>
-            <Label Style="{StaticResource TabLabel}" Text="딜리버리용" Grid.Column="2"></Label>
-
+            <Label Style="{StaticResource TabLabel}" Text="매장용">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" CommandParameter="{x:Static enums:CouponTabType.Store}">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+                
+            </Label>
+            <Label Style="{StaticResource TabLabel}" Text="킹오더용" Grid.Column="1">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" CommandParameter="{x:Static enums:CouponTabType.KingOrder}">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Style="{StaticResource TabLabel}" Text="딜리버리용" Grid.Column="2">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectedTabChangedCommand}" CommandParameter="{x:Static enums:CouponTabType.Delivery}">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
 
             <Border Grid.Row="1" Grid.Column="0" BackgroundColor="Red"></Border>
             <Border Grid.Row="1" Grid.Column="1" BackgroundColor="Green"></Border>
             <Border Grid.Row="1" Grid.Column="2" BackgroundColor="Yellow"></Border>
         </Grid>
+
+        <ScrollView>
+            <ContentView Content="{Binding CurrentTab, Converter={StaticResource CouponTabTypesToViewConverter}}"></ContentView>
+        </ScrollView>
 
     </VerticalStackLayout>
 </ContentView>

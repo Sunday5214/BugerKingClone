@@ -74,10 +74,13 @@
 	  <MauiXaml Update="Views\CouponView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Coupon\ContentView1.xaml">
+	  <MauiXaml Update="Views\Coupon\DeliveryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Coupon\ContentView2.xaml">
+	  <MauiXaml Update="Views\Coupon\KingOrderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Coupon\StoreView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomeView.xaml">
