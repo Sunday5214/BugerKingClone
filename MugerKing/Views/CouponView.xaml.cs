@@ -1,3 +1,5 @@
+using MugerKing.Views.Coupon;
+
 namespace MugerKing.Views;
 
 public partial class CouponView : ContentView
@@ -10,4 +12,5 @@ public partial class CouponView : ContentView
 	{
 		InitializeComponent();
 	}
+
 }

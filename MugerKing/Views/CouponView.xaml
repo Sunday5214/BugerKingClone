@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:couponView="clr-namespace:MugerKing.Views.Coupon"
              x:Class="MugerKing.Views.CouponView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="TabLabel">
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="Padding" Value="10,0,10,10"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
     <VerticalStackLayout>
         <Label 
             Text="Coupon"
@@ -19,6 +31,18 @@
 
             <Image Source="/bugerking_img_in_coupon.webp" WidthRequest="70" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="End" Margin="0,0,20,0"></Image>
 
+        </Grid>
+
+        <Grid RowDefinitions="*, 1" ColumnDefinitions="*, *, *">
+
+            <Label Style="{StaticResource TabLabel}" Text="매장용"></Label>
+            <Label Style="{StaticResource TabLabel}" Text="킹오더용" Grid.Column="1"></Label>
+            <Label Style="{StaticResource TabLabel}" Text="딜리버리용" Grid.Column="2"></Label>
+
+
+            <Border Grid.Row="1" Grid.Column="0" BackgroundColor="Red"></Border>
+            <Border Grid.Row="1" Grid.Column="1" BackgroundColor="Green"></Border>
+            <Border Grid.Row="1" Grid.Column="2" BackgroundColor="Yellow"></Border>
         </Grid>
 
     </VerticalStackLayout>
