@@ -2,17 +2,15 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MugerKing.Views.Coupon.DeliveryView"
-             xmlns:viewModel="clr-namespace:MugerKing.Views.Coupon">
-    <ContentView.BindingContext>
-        <viewModel:DeliveryView x:Name="DeliveryView"></viewModel:DeliveryView>
-    </ContentView.BindingContext>
+             xmlns:viewModel="clr-namespace:MugerKing.ViewModels">
+    <!--<ContentView.BindingContext>
+        <viewModel:DeliveryViewModel x:Name="DeliveryView"></viewModel:DeliveryViewModel>
+    </ContentView.BindingContext>-->
     
     
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding }">
-            <ListView.ItemTemplate>
-                
-            </ListView.ItemTemplate>
-        </ListView>
+        <!--<ListView ItemsSource="{Binding DeliveryModels}">
+            
+        </ListView>-->
     </VerticalStackLayout> 
 </ContentView>
