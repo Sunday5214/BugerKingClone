@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MugerKing.Views.Coupon.StoreView">
+             x:Class="MugerKing.Views.Coupon.StoreView"
+             xmlns:viewModel="clr-namespace:MugerKing.ViewModels.Coupon">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="testKey">
+                <Setter Property="Margin" Value="10, 0, 0, 0" ></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.BindingContext>
+        <viewModel:StoreViewModel></viewModel:StoreViewModel>
+    </ContentView.BindingContext>
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Store"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding DeliveryModels}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="auto,*,*" ColumnDefinitions="100,auto,auto,auto">
+                            <Image Source="{Binding Image}" Grid.RowSpan="3" HorizontalOptions="Start" Aspect="Fill"></Image>
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
+                                <Label Text="{Binding DiscountPrice, StringFormat='{0:#,##0원}'}"></Label>
+                                <Label Text="{Binding Price, StringFormat='{0:#,##0원}'}" HorizontalOptions="Start"></Label>
+                                <Label Text="{Binding Discount, StringFormat='{0}%'}" ></Label>
+                            </HorizontalStackLayout>
+                            <Label Text="{Binding Title}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"></Label>
+                            <!--<Label Text="{Binding DiscountPrice}" Grid.Column="1" Grid.Row="1" Background="red"></Label>
+                            <Label Text="{Binding Price}" Grid.Column="2" Grid.Row="1" HorizontalOptions="Start"></Label>
+                            <Label Text="{Binding Discount, StringFormat='{0}%'}" Grid.Column="3" Grid.Row="1"></Label>-->
+                            <Label Text="{Binding EndDate, StringFormat='~ {0:yyyy-MM-dd}'}" Style="{StaticResource testKey}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentView>

@@ -70,7 +70,7 @@
             <Border Grid.Row="1" Grid.Column="2" BackgroundColor="Yellow"></Border>
         </Grid>
 
-        <ScrollView>
+        <ScrollView Margin="0, 20, 0, 0">
             <ContentView Content="{Binding CurrentTab, Converter={StaticResource CouponTabTypesToViewConverter}}"></ContentView>
         </ScrollView>
 

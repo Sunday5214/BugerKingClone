@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace MugerKing.ViewModels
+namespace MugerKing.ViewModels.Coupon
 {
-    public class DeliveryModel
+    public class StoreModel
     {
         /// <summary>
         /// 이미지 or 이미지URL
@@ -35,16 +35,16 @@ namespace MugerKing.ViewModels
         public DateTime EndDate { get; set; }
     }
 
-    public partial class DeliveryViewModel : ObservableObject
+    public partial class StoreViewModel : ObservableObject
     {
         [ObservableProperty]
-        private List<DeliveryModel> deliveryModels;
+        private List<StoreModel> deliveryModels;
 
-        public DeliveryViewModel()
+        public StoreViewModel()
         {
-            deliveryModels = new List<DeliveryModel>()
+            deliveryModels = new List<StoreModel>()
             {
-                new DeliveryModel()
+                new StoreModel()
                 {
                     Title = "[NEW⭐] 헬로 디아블로 와퍼+코카콜라(R)",
                     Price = 15000,
@@ -52,7 +52,7 @@ namespace MugerKing.ViewModels
                     DiscountPrice = 13000,
                     EndDate = DateTime.Now.AddDays(-10)
                 },
-                new DeliveryModel()
+                new StoreModel()
                 {
                     Title = "바비큐치킨버거+코카콜라(R)",
                     Price = 5700,
@@ -60,7 +60,7 @@ namespace MugerKing.ViewModels
                     DiscountPrice = 3700,
                     EndDate = DateTime.Now.AddDays(-3)
                 },
-                new DeliveryModel()
+                new StoreModel()
                 {
                     Title = "불고기와퍼 세트",
                     Price =  9000,
@@ -68,7 +68,7 @@ namespace MugerKing.ViewModels
                     DiscountPrice = 8100,
                     EndDate = DateTime.Now.AddDays(-5)
                 },
-                new DeliveryModel()
+                new StoreModel()
                 {
                     Title = "[신제품팩⭐]헬로이나리우스와퍼세트+헬로릴리트와퍼+콜라(R)+21치즈스틱 ",
                     Price = 25500,
@@ -76,7 +76,7 @@ namespace MugerKing.ViewModels
                     DiscountPrice = 19900,
                     EndDate = DateTime.Now.AddDays(14)
                 },
-                new DeliveryModel()
+                new StoreModel()
                 {
                     Title = "[특별 팩⭐] 치즈와퍼세트+통새우와퍼+코카콜라(R)+21치즈스틱",
                     Price = 22100,
