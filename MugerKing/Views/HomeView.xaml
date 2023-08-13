@@ -1,11 +1,174 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MugerKing.Views.HomeView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Home"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentView>
+<view:BaseView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:view="clr-namespace:MugerKing.Views"
+               xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:viewModel="clr-namespace:MugerKing.ViewModels"
+               x:Class="MugerKing.Views.HomeView">
+    <view:BaseView.BindingContext>
+        <viewModel:HomeViewModel x:Name="ViewModel"/>
+    </view:BaseView.BindingContext>
+    <view:BaseView.TitleContent>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10, 0, 10, 0" BackgroundColor="Blue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Source="cat.svg" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                <ImageButton.Behaviors>
+                    <mct:IconTintColorBehavior TintColor="{StaticResource Primary}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+            <ImageButton Source="bugerkinglogo.svg" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="FillAndExpand"
+                          Padding="0" />
+            <ImageButton Source="cat.svg" Grid.Column="2" HorizontalOptions="End" VerticalOptions="FillAndExpand">
+                <ImageButton.Behaviors>
+                    <mct:IconTintColorBehavior TintColor="{StaticResource Primary}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+        </Grid>
+    </view:BaseView.TitleContent>
+    <view:BaseView.MainContent>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="10, 0, 10, 0" Spacing="0">
+                <Grid>
+                    <Border>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="7, 7, 7, 7"/>
+                        </Border.StrokeShape>
+                        <CarouselView HorizontalOptions="FillAndExpand" x:Name="imageCarousel"
+                                  ItemsSource="{Binding EventList}"
+                                  VerticalOptions="FillAndExpand"
+                                  CurrentItemChangedCommandParameter="{Binding CurrentItem, Source={x:Reference imageCarousel}}"
+                                  CurrentItemChangedCommand="{Binding CurrentImagItemChangedCommand}"
+                                  HeightRequest="{Binding Width, Source={x:Reference imageCarousel}}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImageUrl}"/>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                    </Border>
+                   
+                    <HorizontalStackLayout VerticalOptions="End" Margin="10, 0, 0, 8">
+                        <Label Text="{Binding CurrentIdx}" TextColor="White"/>
+                        <Label Text="/" TextColor="LightGray"  Opacity="0.8"/>
+                        <Label Text="{Binding EventList.Count}" TextColor="LightGray" Opacity="0.8"/>
+                    </HorizontalStackLayout>
+                </Grid>
+                <Border Margin="0, 10, 0, 0" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="7, 7, 7, 7"/>
+                    </Border.StrokeShape>
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                          ColumnSpacing="0" RowSpacing="0" Padding="15, 5, 0, -2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Login" Grid.Row="0" Grid.Column="0" FontSize="18"
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="End" TextColor="{StaticResource Secondary}"
+                               FontAttributes="Bold"/>
+                        <Label Text="버거킹 회원이 되시면 회원 전용 무료 쿠폰과 멤버십 혜택을 드립니다." Grid.Row="1" Grid.Column="0" 
+                               FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="Start" TextColor="{StaticResource Secondary}"/>
+                        <Image Source="bugerkinglogo.svg" HorizontalOptions="Start" VerticalOptions="Center"
+                               Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="5"/>
+                    </Grid>
+                </Border>
+                <Grid Grid.ColumnSpan="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Margin="0, 10, 0, 0" StrokeThickness="0" Grid.Column="0"
+                            BackgroundColor="{StaticResource Primary}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="7, 7, 7, 7"/>
+                        </Border.StrokeShape>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                          ColumnSpacing="0" RowSpacing="0" Padding="15, 5, 0, -2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"/>
+                                <RowDefinition Height="0.5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="킹오더" Grid.Row="0" Grid.Column="0" FontSize="18"
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="End" TextColor="{StaticResource PageBackgroundColor}"
+                               FontAttributes="Bold"/>
+                            <Label Text="매장에 미리 주문" Grid.Row="1" Grid.Column="0" 
+                               FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="Start" TextColor="{StaticResource PageBackgroundColor}"/>
+                            <Image Source="bugerkinglogo.svg" HorizontalOptions="Start" VerticalOptions="Center"
+                               Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="5"/>
+                        </Grid>
+                    </Border>
+                    <Border Margin="0, 10, 0, 0" StrokeThickness="0" Grid.Column="1"
+                            BackgroundColor="{StaticResource Tertiary}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="7, 7, 7, 7"/>
+                        </Border.StrokeShape>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                          ColumnSpacing="0" RowSpacing="0" Padding="15, 5, 0, -2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"/>
+                                <RowDefinition Height="0.5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="딜리버리" Grid.Row="0" Grid.Column="0" FontSize="18"
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="End" TextColor="{StaticResource PageBackgroundColor}"
+                               FontAttributes="Bold"/>
+                            <Label Text="문 앞까지 배달" Grid.Row="1" Grid.Column="0" 
+                               FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                               VerticalTextAlignment="Start" TextColor="{StaticResource PageBackgroundColor}"/>
+                            <Image Source="bugerkinglogo.svg" HorizontalOptions="Start" VerticalOptions="Center"
+                               Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="5"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Label Text="It's NEW" FontSize="18" Margin="0, 30, 0, 0"
+                       VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center" TextColor="{StaticResource Secondary}"
+                       FontAttributes="Bold"/>
+                <CollectionView ItemsSource="{Binding BugerList}" Margin="0, 5, 0, 0">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" 
+                                           ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeThickness="0" Grid.Column="1"
+                                    BackgroundColor="White" Padding="5">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="7, 7, 7, 7"/>
+                                </Border.StrokeShape>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="{Binding ImageUrl}" HorizontalOptions="Center" VerticalOptions="Center"
+                                           Margin="10"/>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                           VerticalTextAlignment="Center" TextColor="{StaticResource Black}"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </view:BaseView.MainContent>
+</view:BaseView>

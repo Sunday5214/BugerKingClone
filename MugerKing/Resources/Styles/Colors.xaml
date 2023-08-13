@@ -6,7 +6,7 @@
     <Color x:Key="PageBackgroundColor">#F5EBDC</Color>
     <Color x:Key="Primary">#D62300</Color>
     <Color x:Key="Secondary">#502314</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Tertiary">#198737</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
