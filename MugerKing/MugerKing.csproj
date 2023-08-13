@@ -69,10 +69,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Managers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\BaseView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -88,6 +84,10 @@
 	  <MauiXaml Update="Views\MyKingView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Managers\" />
 	</ItemGroup>
 
 </Project>

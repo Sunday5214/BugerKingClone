@@ -7,8 +7,8 @@
               VerticalOptions="FillAndExpand"
               RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.06*"/>
-                <RowDefinition Height="0.94*"/>
+                <RowDefinition Height="0.04*"/>
+                <RowDefinition Height="0.96*"/>
             </Grid.RowDefinitions>
             <Grid x:Name="title" Grid.Row="0" BackgroundColor="{StaticResource PageBackgroundColor}">
             </Grid>
