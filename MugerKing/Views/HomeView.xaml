@@ -15,7 +15,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton Source="cat.svg" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+            <ImageButton Source="cat.svg" Grid.Column="0" HorizontalOptions="Start" 
+                         VerticalOptions="FillAndExpand" Command="{Binding OpenInfomationPageCommand}">
                 <ImageButton.Behaviors>
                     <mct:IconTintColorBehavior TintColor="{StaticResource Primary}"/>
                 </ImageButton.Behaviors>

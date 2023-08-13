@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MugerKing.Models;
+using MugerKing.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,6 +29,12 @@ namespace MugerKing.ViewModels
             {
                 CurrentIdx = EventList.IndexOf(eventObject) + 1;
             }
+        }
+
+        [RelayCommand]
+        private async Task OpenInfomationPage()
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new InfomationPage());
         }
 
         public HomeViewModel()

@@ -1,4 +1,6 @@
-﻿namespace MugerKing;
+﻿using MugerKing.Views;
+
+namespace MugerKing;
 
 public partial class App : Application
 {
@@ -6,6 +8,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new NavigationPage(new MainPage());
+		MainPage = new InfomationPage(); //new NavigationPage(new MainPage());
 	}
 }
