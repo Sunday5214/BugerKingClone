@@ -50,6 +50,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\cat.svg" />
+	  <None Remove="Resources\Images\bugerkinglogo.svg" />
+	  <None Remove="Resources\Images\homeimage1.png" />
+	  <None Remove="Resources\Images\homeimage2.png" />
+	  <None Remove="Resources\Images\homeimage3.png" />
+	  <None Remove="Resources\Images\homeimage4.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,11 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Managers\" />
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <MauiXaml Update="Views\BaseView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CouponView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -81,6 +84,10 @@
 	  <MauiXaml Update="Views\MyKingView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Managers\" />
 	</ItemGroup>
 
 </Project>

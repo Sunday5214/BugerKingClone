@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MugerKing.Views.BaseView">
+    <Grid BackgroundColor="White">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.04*"/>
+                <RowDefinition Height="0.96*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="title" Grid.Row="0" BackgroundColor="{StaticResource PageBackgroundColor}">
+            </Grid>
+            <Grid x:Name="content" Grid.Row="1" BackgroundColor="{StaticResource PageBackgroundColor}">
+            </Grid>
+        </Grid>
+        <Grid x:Name="alertContainer" IsVisible="false">
+            <Grid BackgroundColor="LightGray" 
+                  Opacity="0.8" 
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Frame x:Name="alertContent" Style="{StaticResource MainFrameStyle}" 
+               Padding="0, 20, 0, 20"
+               Margin="45, 0, 45, 0"
+               BackgroundColor="White"
+               HorizontalOptions="Center" 
+               VerticalOptions="Center">
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentView>
