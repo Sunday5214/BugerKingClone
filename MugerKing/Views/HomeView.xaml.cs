@@ -1,6 +1,6 @@
 namespace MugerKing.Views;
 
-public partial class HomeView : ContentView
+public partial class HomeView : BaseView
 {
     private static readonly Lazy<HomeView> instance =
         new Lazy<HomeView>(() => new HomeView());
