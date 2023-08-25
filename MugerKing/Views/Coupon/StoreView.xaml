@@ -16,27 +16,28 @@
         <viewModel:StoreViewModel></viewModel:StoreViewModel>
     </ContentView.BindingContext>
     
-    <VerticalStackLayout>
-        <ListView ItemsSource="{Binding DeliveryModels}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding DeliveryModels}" HasUnevenRows="True" Margin="14,20,14,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowDefinitions="auto,*,*" ColumnDefinitions="100,auto,auto,auto">
-                            <Image Source="{Binding Image}" Grid.RowSpan="3" HorizontalOptions="Start" Aspect="Fill"></Image>
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
-                                <Label Text="{Binding DiscountPrice, StringFormat='{0:#,##0원}'}"></Label>
-                                <Label Text="{Binding Price, StringFormat='{0:#,##0원}'}" HorizontalOptions="Start"></Label>
-                                <Label Text="{Binding Discount, StringFormat='{0}%'}" ></Label>
-                            </HorizontalStackLayout>
-                            <Label Text="{Binding Title}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"></Label>
-                            <!--<Label Text="{Binding DiscountPrice}" Grid.Column="1" Grid.Row="1" Background="red"></Label>
-                            <Label Text="{Binding Price}" Grid.Column="2" Grid.Row="1" HorizontalOptions="Start"></Label>
-                            <Label Text="{Binding Discount, StringFormat='{0}%'}" Grid.Column="3" Grid.Row="1"></Label>-->
-                            <Label Text="{Binding EndDate, StringFormat='~ {0:yyyy-MM-dd}'}" Style="{StaticResource testKey}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"></Label>
-                        </Grid>
+                        <Border Padding="-10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"></RoundRectangle>
+                            </Border.StrokeShape>
+
+                            <Grid RowDefinitions="*,*,*" ColumnDefinitions="80,*,auto,auto" Margin="12" Background="#ffffff">
+                                <Image Source="{Binding Image}" Grid.RowSpan="3" HorizontalOptions="Start" Aspect="Fill"></Image>
+                                <Label Text="{Binding Title}" Grid.Column="1" Grid.Row="0" FontSize="14" Margin="10,10,0,0" LineBreakMode="WordWrap" VerticalOptions="Center" TextColor="#4a2518" FontAttributes="Bold"></Label>
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0">
+                                    <Label Text="{Binding DiscountPrice, StringFormat='{0:#,##0원}'}" TextColor="Red" FontAttributes="Bold" FontSize="14"></Label>
+                                    <Label Text="{Binding Price, StringFormat='{0:#,##0원}'}" TextDecorations="Strikethrough" TextColor="#beb7b4" FontSize="13"></Label>
+                                    <Label Text="{Binding Discount, StringFormat='{0}%'}" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" FontSize="13"></Label>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding EndDate, StringFormat='~ {0:yyyy-MM-dd}'}" Style="{StaticResource testKey}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" TextColor="#4a2518" FontAttributes="Bold" FontSize="11"></Label>
+                            </Grid>
+                        </Border>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </VerticalStackLayout>
 </ContentView>
